@@ -5,7 +5,7 @@ module.exports = function (app) {
     app.get("/api/workouts", (req, res) => {
         db.Workout.find({}, (error, data) => {
             if (error) {
-                res.send(error);
+                res.status(404).send(error);
             } else {
                 res.send(data);
             }
@@ -16,7 +16,7 @@ module.exports = function (app) {
     app.get("/api/workouts/range", (req, res) => {
         db.Workout.find({}, (error, data) => {
             if (error) {
-                res.send(error);
+                res.status(404).send(error);
             } else {
                 res.send(data);
             }
@@ -32,14 +32,14 @@ module.exports = function (app) {
                 res.json(dbWorkout);
             })
             .catch(err => {
-                res.json(err);
+                res.status(404).json(err);
             });
     });
 
     app.put("/api/workouts/:id", (req, res) => {
         db.Workout.findByIdAndUpdate(req.params.id, {$push:{exercises:req.body}},{new: true, runValidators:true }, (error, data) => {
           if (error) {
-            res.send(error);
+            res.status(404).send(error);
           } else {
             // check body if get through and update data
             res.send(data);
