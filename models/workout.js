@@ -1,5 +1,6 @@
 const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
+// setting schema for our workout database
 const WorkoutSchema = new Schema({
   day: {
     type: Date,
@@ -28,7 +29,7 @@ const WorkoutSchema = new Schema({
           required: function () { return this.type === "cardio"; }
 
         },
-
+// required defines necessary fields for diffrent type of workouts
 
         weight: {
           type: Number,
@@ -49,13 +50,13 @@ const WorkoutSchema = new Schema({
 }, { toJSON: { virtuals: true, } }
 );
 
-
+// setting virtual attribute of the workout duration 
 WorkoutSchema.virtual("totalDuration").get(function () {
   return this.exercises.reduce((total, exercise) => {
     return total + exercise.duration
   }, 0)
 })
-
+// exporting model
 const Workout = mongoose.model("Workout", WorkoutSchema);
 
 module.exports = Workout;

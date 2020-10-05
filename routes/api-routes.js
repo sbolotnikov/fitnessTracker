@@ -2,6 +2,7 @@ const db = require("../models");
 
 module.exports = function (app) {
 
+    // getting all workouts
     app.get("/api/workouts", (req, res) => {
         db.Workout.find({}, (error, data) => {
             if (error) {
@@ -13,6 +14,7 @@ module.exports = function (app) {
         );
     });
 
+    // getting range of workouts
     app.get("/api/workouts/range", (req, res) => {
         db.Workout.find({}, (error, data) => {
             if (error) {
@@ -24,6 +26,7 @@ module.exports = function (app) {
         );
     });
 
+    // posting new workout
     app.post("/api/workouts", (req, res) => {
         let today = new Date();
         // create new workout as of today, and exercise[] is empty
@@ -36,6 +39,7 @@ module.exports = function (app) {
             });
     });
 
+    // updating workout with new exercise
     app.put("/api/workouts/:id", (req, res) => {
         db.Workout.findByIdAndUpdate(req.params.id, {$push:{exercises:req.body}},{new: true, runValidators:true }, (error, data) => {
           if (error) {

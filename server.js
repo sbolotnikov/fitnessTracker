@@ -7,6 +7,7 @@ const app = express();
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 app.use(express.static("public"));
+// setting connection to mangooes in local or on server 
 mongoose.connect(process.env.MONGODB_ATLAS_URI || "mongodb://localhost/workout",
  { useNewUrlParser: true, useUnifiedTopology: true, useCreateIndex: true,
   useFindAndModify: false });
