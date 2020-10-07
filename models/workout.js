@@ -16,16 +16,17 @@ const WorkoutSchema = new Schema({
         },
         name: {
           type: String,
+          minlength: [1, 'Should be more then 1'],
           unique: true
         },
         duration: {
           type: Number,
-
+          min: [1, 'duration should be more then 1 minute'],
         },
-
 
         distance: {
           type: Number,
+          min: [0, 'distance should be more then 0 miles'],
           required: function () { return this.type === "cardio"; }
 
         },
@@ -33,15 +34,18 @@ const WorkoutSchema = new Schema({
 
         weight: {
           type: Number,
+          min: [0, 'Weight should be more then 0 pounds'],
           required: function () { return this.type === "resistance"; }
 
         },
         sets: {
           type: Number,
+          min: [0, 'Should be more then 0'],
           required: function () { return this.type === "resistance"; }
         },
         reps: {
           type: Number,
+          min: [0, 'Should be more then 0'],
           required: function () { return this.type === "resistance"; }
         },
       }
