@@ -41,4 +41,4 @@ Dashboard Charts examples
 ## Review 
   * Here is this repo link: https://github.com/sbolotnikov/fitnessTracker
  
-  * Link: [Fitness Tracker](https://afternoon-chamber-99661.herokuapp.com/)
+  * Link: [Fitness Tracker](https://fitnesstracker-3r9u.onrender.com/)
